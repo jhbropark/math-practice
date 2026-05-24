@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>곱셈 & 나눗셈 연습 - Year 3</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+  }
+
+  .container {
+    background: #fff;
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    max-width: 680px;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: linear-gradient(135deg, #f093fb, #f5576c);
+    padding: 24px 28px 20px;
+    text-align: center;
+    color: #fff;
+  }
+  .header h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -0.5px; }
+  .header p  { font-size: 0.95rem; opacity: 0.9; margin-top: 4px; }
+
+  /* ── SCREENS ── */
+  .screen { display: none; padding: 32px 28px; }
+  .screen.active { display: block; }
+
+  /* ── WELCOME ── */
+  .concept-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .concept-card {
+    border-radius: 16px;
+    padding: 20px 16px;
+    text-align: center;
+  }
+  .concept-card.mul { background: #fff8e1; border: 2px solid #ffd54f; }
+  .concept-card.div { background: #e8f5e9; border: 2px solid #66bb6a; }
+  .concept-card .icon { font-size: 2.4rem; }
+  .concept-card h3 { font-size: 1rem; font-weight: 700; margin: 8px 0 6px; }
+  .concept-card p  { font-size: 0.85rem; color: #555; line-height: 1.5; }
+  .example-box {
+    background: #f8f0ff;
+    border-left: 4px solid #9c27b0;
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin: 8px 0;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #4a148c;
+  }
+
+  /* ── QUIZ ── */
+  .stats-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 14px;
+  }
+  .progress-outer {
+    background: #eee;
+    border-radius: 99px;
+    height: 10px;
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .progress-inner {
+    height: 100%;
+    border-radius: 99px;
+    background: linear-gradient(90deg, #43e97b, #38f9d7);
+    transition: width 0.4s ease;
+  }
+
+  .question-type-badge {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 99px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 16px;
+  }
+  .badge-mul { background: #fff3cd; color: #856404; }
+  .badge-div { background: #d4edda; color: #155724; }
+
+  .question-text {
+    font-size: 2.6rem;
+    font-weight: 900;
+    text-align: center;
+    color: #222;
+    margin: 20px 0 28px;
+    letter-spacing: 2px;
+  }
+
+  .choices {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+  .choice-btn {
+    padding: 18px 12px;
+    border-radius: 14px;
+    border: 2.5px solid #ddd;
+    background: #fafafa;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.18s;
+    text-align: center;
+  }
+  .choice-btn:hover:not(:disabled) {
+    border-color: #764ba2;
+    background: #f3eeff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(118,75,162,0.18);
+  }
+  .choice-btn.correct  { border-color: #28a745; background: #d4edda; color: #155724; }
+  .choice-btn.wrong    { border-color: #dc3545; background: #f8d7da; color: #721c24; }
+  .choice-btn.reveal   { border-color: #28a745; background: #d4edda; color: #155724; }
+  .choice-btn:disabled { cursor: not-allowed; }
+
+  .feedback-msg {
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 700;
+    min-height: 28px;
+    margin-bottom: 16px;
+  }
+  .feedback-msg.ok  { color: #28a745; }
+  .feedback-msg.err { color: #dc3545; }
+
+  .next-btn {
+    width: 100%;
+    padding: 16px;
+    border-radius: 14px;
+    border: none;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #fff;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.2s;
+    display: none;
+  }
+  .next-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+  .next-btn.visible { display: block; }
+
+  /* ── RESULT ── */
+  .result-hero {
+    text-align: center;
+    padding: 12px 0 24px;
+  }
+  .result-emoji { font-size: 4rem; }
+  .result-score {
+    font-size: 3.2rem;
+    font-weight: 900;
+    color: #764ba2;
+    margin: 8px 0 4px;
+  }
+  .result-label { font-size: 1rem; color: #666; }
+
+  .result-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 24px 0;
+  }
+  .result-stat {
+    background: #f8f0ff;
+    border-radius: 14px;
+    padding: 16px 8px;
+    text-align: center;
+  }
+  .result-stat .num { font-size: 1.8rem; font-weight: 800; color: #764ba2; }
+  .result-stat .lbl { font-size: 0.78rem; color: #888; margin-top: 2px; }
+
+  .stars { font-size: 2rem; text-align: center; margin: 8px 0 20px; letter-spacing: 4px; }
+
+  /* ── BUTTONS ── */
+  .btn {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    border-radius: 14px;
+    border: none;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.2s;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+  .btn:hover { opacity: 0.88; transform: translateY(-1px); }
+  .btn-primary { background: linear-gradient(135deg, #f093fb, #f5576c); color: #fff; }
+  .btn-secondary { background: linear-gradient(135deg, #667eea, #764ba2); color: #fff; }
+  .btn-outline { background: #fff; color: #764ba2; border: 2.5px solid #764ba2; }
+
+  /* ── CONCEPT LEARN PAGE ── */
+  .section-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #333;
+    margin-bottom: 16px;
+  }
+  .tip-list { list-style: none; padding: 0; }
+  .tip-list li {
+    padding: 10px 14px;
+    border-radius: 10px;
+    background: #f9f9f9;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: #444;
+    line-height: 1.5;
+    border-left: 3px solid #764ba2;
+  }
+  .tip-list li span { font-weight: 700; color: #764ba2; }
+
+  @media (max-width: 420px) {
+    .concept-grid { grid-template-columns: 1fr; }
+    .question-text { font-size: 2rem; }
+    .choices { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .choice-btn { font-size: 1.2rem; padding: 14px 8px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>✖️ 곱셈 &amp; 나눗셈 ➗</h1>
+    <p>Year 3 수학 반복학습 · 100문항</p>
+  </div>
+
+  <!-- ── WELCOME SCREEN ── -->
+  <div id="screen-welcome" class="screen active">
+    <p class="section-title">📚 오늘 배울 내용</p>
+    <div class="concept-grid">
+      <div class="concept-card mul">
+        <div class="icon">✖️</div>
+        <h3>곱셈 (Multiplication)</h3>
+        <p>같은 수를 여러 번 더하는 것<br>빠른 덧셈 방법이에요!</p>
+      </div>
+      <div class="concept-card div">
+        <div class="icon">➗</div>
+        <h3>나눗셈 (Division)</h3>
+        <p>무언가를 똑같이 나누는 것<br>곱셈의 반대예요!</p>
+      </div>
+    </div>
+
+    <p class="section-title">💡 핵심 개념</p>
+    <div class="example-box">3 × 4 = 12 &nbsp;→&nbsp; 3을 4번 더하면 12</div>
+    <div class="example-box">12 ÷ 4 = 3 &nbsp;→&nbsp; 12를 4로 나누면 3</div>
+    <div class="example-box">곱셈과 나눗셈은 서로 거꾸로!</div>
+
+    <p class="section-title" style="margin-top:20px">🎯 학습 팁</p>
+    <ul class="tip-list">
+      <li><span>구구단 암기:</span> 2단부터 9단까지 순서대로 외워요</li>
+      <li><span>나눗셈 확인법:</span> 몫 × 나누는 수 = 나누어지는 수</li>
+      <li><span>0의 법칙:</span> 어떤 수 × 0 = 0, 0 ÷ 어떤 수 = 0</li>
+      <li><span>1의 법칙:</span> 어떤 수 × 1 = 그 수, 어떤 수 ÷ 1 = 그 수</li>
+    </ul>
+
+    <button class="btn btn-primary" style="margin-top:28px" onclick="startQuiz()">🚀 100문항 도전 시작!</button>
+    <button class="btn btn-outline" onclick="showConcept()">📖 개념 더 알아보기</button>
+  </div>
+
+  <!-- ── CONCEPT DETAIL ── -->
+  <div id="screen-concept" class="screen">
+    <p class="section-title">✖️ 곱셈 구구단 표</p>
+    <div id="times-table" style="overflow-x:auto; margin-bottom:24px;"></div>
+
+    <p class="section-title">➗ 나눗셈의 원리</p>
+    <ul class="tip-list">
+      <li>나눗셈은 <span>똑같이 묶기</span>예요.<br>12개의 사과를 4명에게 나누면 → 12 ÷ 4 = 3개씩</li>
+      <li>나눗셈과 곱셈은 <span>역연산</span> 관계:<br>3 × 4 = 12 ↔ 12 ÷ 4 = 3 ↔ 12 ÷ 3 = 4</li>
+      <li><span>나머지가 없는</span> 나눗셈만 연습해요 (Year 3 수준)</li>
+    </ul>
+
+    <button class="btn btn-secondary" style="margin-top:24px" onclick="startQuiz()">🚀 퀴즈 시작!</button>
+    <button class="btn btn-outline" onclick="showScreen('screen-welcome')">← 뒤로</button>
+  </div>
+
+  <!-- ── QUIZ SCREEN ── -->
+  <div id="screen-quiz" class="screen">
+    <div class="stats-bar">
+      <span id="q-count">문제 1 / 100</span>
+      <span id="q-score">✅ 0 &nbsp;❌ 0</span>
+    </div>
+    <div class="progress-outer">
+      <div class="progress-inner" id="progress-bar" style="width:0%"></div>
+    </div>
+    <div id="q-badge" class="question-type-badge badge-mul">곱셈</div>
+    <div class="question-text" id="q-text">3 × 4 = ?</div>
+    <div class="choices" id="q-choices"></div>
+    <div class="feedback-msg" id="q-feedback"></div>
+    <button class="next-btn" id="next-btn" onclick="nextQuestion()">다음 문제 →</button>
+  </div>
+
+  <!-- ── RESULT SCREEN ── -->
+  <div id="screen-result" class="screen">
+    <div class="result-hero">
+      <div class="result-emoji" id="r-emoji">🎉</div>
+      <div class="result-score" id="r-score">85 / 100</div>
+      <div class="result-label">최종 점수</div>
+    </div>
+    <div class="stars" id="r-stars">⭐⭐⭐⭐⭐</div>
+    <div class="result-grid">
+      <div class="result-stat">
+        <div class="num" id="r-correct">0</div>
+        <div class="lbl">정답</div>
+      </div>
+      <div class="result-stat">
+        <div class="num" id="r-wrong">0</div>
+        <div class="lbl">오답</div>
+      </div>
+      <div class="result-stat">
+        <div class="num" id="r-pct">0%</div>
+        <div class="lbl">정답률</div>
+      </div>
+    </div>
+    <div id="r-message" style="text-align:center;font-size:0.95rem;color:#555;margin-bottom:24px;line-height:1.6;"></div>
+    <button class="btn btn-primary" onclick="retryQuiz()">🔄 다시 도전!</button>
+    <button class="btn btn-secondary" onclick="showScreen('screen-welcome')">🏠 처음으로</button>
+  </div>
+</div>
+
+<script>
+// ── Question generation ──────────────────────────────────────────────
+
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function makeMulQuestion() {
+  const a = Math.floor(Math.random() * 10) + 2; // 2–11
+  const b = Math.floor(Math.random() * 9) + 2;  // 2–10
+  const answer = a * b;
+  return {
+    type: 'mul',
+    text: `${a} × ${b} = ?`,
+    answer,
+    choices: makeChoices(answer, 1, 110)
+  };
+}
+
+function makeDivQuestion() {
+  const b = Math.floor(Math.random() * 9) + 2;  // divisor 2–10
+  const q = Math.floor(Math.random() * 9) + 2;  // quotient 2–10
+  const a = b * q;
+  return {
+    type: 'div',
+    text: `${a} ÷ ${b} = ?`,
+    answer: q,
+    choices: makeChoices(q, 1, 12)
+  };
+}
+
+function makeChoices(answer, min, max) {
+  const set = new Set([answer]);
+  const offsets = shuffle([-3,-2,-1,1,2,3,4,5,-4,-5]);
+  for (const o of offsets) {
+    const v = answer + o;
+    if (v >= min && v <= max) set.add(v);
+    if (set.size === 4) break;
+  }
+  // fallback if not enough
+  while (set.size < 4) {
+    const v = Math.floor(Math.random() * (max - min + 1)) + min;
+    set.add(v);
+  }
+  return shuffle([...set].slice(0, 4));
+}
+
+function buildQuestions() {
+  const qs = [];
+  // 50 multiplication, 50 division
+  for (let i = 0; i < 50; i++) qs.push(makeMulQuestion());
+  for (let i = 0; i < 50; i++) qs.push(makeDivQuestion());
+  return shuffle(qs);
+}
+
+// ── State ────────────────────────────────────────────────────────────
+let questions = [];
+let current   = 0;
+let correct   = 0;
+let wrong     = 0;
+let answered  = false;
+
+// ── Screen helpers ───────────────────────────────────────────────────
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function showConcept() {
+  // Build times table
+  const container = document.getElementById('times-table');
+  let html = '<table style="border-collapse:collapse;font-size:0.8rem;min-width:360px">';
+  html += '<tr><th style="padding:5px 8px;background:#764ba2;color:#fff">×</th>';
+  for (let b = 1; b <= 10; b++) html += `<th style="padding:5px 8px;background:#764ba2;color:#fff">${b}</th>`;
+  html += '</tr>';
+  for (let a = 2; a <= 10; a++) {
+    html += `<tr><td style="padding:5px 8px;font-weight:700;background:#f3eeff;text-align:center">${a}</td>`;
+    for (let b = 1; b <= 10; b++) {
+      const v = a * b;
+      const bg = v > 50 ? '#ffe0e0' : v > 25 ? '#fff3cd' : '#e8f5e9';
+      html += `<td style="padding:5px 8px;text-align:center;background:${bg};border:1px solid #ddd">${v}</td>`;
+    }
+    html += '</tr>';
+  }
+  html += '</table>';
+  container.innerHTML = html;
+  showScreen('screen-concept');
+}
+
+// ── Quiz logic ───────────────────────────────────────────────────────
+function startQuiz() {
+  questions = buildQuestions();
+  current   = 0;
+  correct   = 0;
+  wrong     = 0;
+  answered  = false;
+  showScreen('screen-quiz');
+  renderQuestion();
+}
+
+function retryQuiz() {
+  startQuiz();
+}
+
+function renderQuestion() {
+  const q = questions[current];
+  answered = false;
+
+  // stats bar
+  document.getElementById('q-count').textContent = `문제 ${current + 1} / 100`;
+  document.getElementById('q-score').textContent  = `✅ ${correct}  ❌ ${wrong}`;
+
+  // progress
+  document.getElementById('progress-bar').style.width = `${(current / 100) * 100}%`;
+
+  // badge
+  const badge = document.getElementById('q-badge');
+  if (q.type === 'mul') {
+    badge.textContent = '✖️ 곱셈';
+    badge.className   = 'question-type-badge badge-mul';
+  } else {
+    badge.textContent = '➗ 나눗셈';
+    badge.className   = 'question-type-badge badge-div';
+  }
+
+  // question text
+  document.getElementById('q-text').textContent = q.text;
+
+  // choices
+  const choicesEl = document.getElementById('q-choices');
+  choicesEl.innerHTML = '';
+  q.choices.forEach(c => {
+    const btn = document.createElement('button');
+    btn.className = 'choice-btn';
+    btn.textContent = c;
+    btn.onclick = () => selectAnswer(btn, c, q.answer);
+    choicesEl.appendChild(btn);
+  });
+
+  // feedback + next btn
+  document.getElementById('q-feedback').textContent = '';
+  document.getElementById('q-feedback').className   = 'feedback-msg';
+  document.getElementById('next-btn').classList.remove('visible');
+}
+
+function selectAnswer(btn, chosen, answer) {
+  if (answered) return;
+  answered = true;
+
+  const allBtns = document.querySelectorAll('.choice-btn');
+  allBtns.forEach(b => b.disabled = true);
+
+  const fb = document.getElementById('q-feedback');
+
+  if (chosen === answer) {
+    btn.classList.add('correct');
+    correct++;
+    const msgs = ['정답이에요! 🎉', '완벽해요! ⭐', '훌륭해요! 🌟', '맞았어요! 👏', '대단해요! 🥳'];
+    fb.textContent  = msgs[Math.floor(Math.random() * msgs.length)];
+    fb.className    = 'feedback-msg ok';
+  } else {
+    btn.classList.add('wrong');
+    wrong++;
+    // highlight correct
+    allBtns.forEach(b => {
+      if (parseInt(b.textContent) === answer) b.classList.add('reveal');
+    });
+    fb.textContent  = `아쉬워요 😢 정답은 ${answer} 이에요`;
+    fb.className    = 'feedback-msg err';
+  }
+
+  document.getElementById('q-score').textContent = `✅ ${correct}  ❌ ${wrong}`;
+  document.getElementById('next-btn').classList.add('visible');
+}
+
+function nextQuestion() {
+  current++;
+  if (current >= 100) {
+    showResult();
+  } else {
+    renderQuestion();
+  }
+}
+
+function showResult() {
+  showScreen('screen-result');
+  const pct = Math.round((correct / 100) * 100);
+
+  document.getElementById('r-score').textContent   = `${correct} / 100`;
+  document.getElementById('r-correct').textContent = correct;
+  document.getElementById('r-wrong').textContent   = wrong;
+  document.getElementById('r-pct').textContent     = `${pct}%`;
+
+  let emoji, stars, msg;
+  if (pct >= 95) {
+    emoji = '🏆'; stars = '⭐⭐⭐⭐⭐';
+    msg = '완벽에 가까운 실력이에요! 수학 천재 등극! 👑<br>곱셈과 나눗셈을 완전히 마스터했어요.';
+  } else if (pct >= 80) {
+    emoji = '🎉'; stars = '⭐⭐⭐⭐';
+    msg = '정말 잘했어요! 조금만 더 연습하면 완벽해질 거예요. 💪<br>틀린 문제를 다시 한 번 풀어봐요.';
+  } else if (pct >= 60) {
+    emoji = '😊'; stars = '⭐⭐⭐';
+    msg = '잘하고 있어요! 구구단을 더 연습하면 훨씬 좋아질 거예요. 📚<br>꾸준히 연습하는 게 최고예요!';
+  } else if (pct >= 40) {
+    emoji = '🙂'; stars = '⭐⭐';
+    msg = '도전하는 자세가 훌륭해요! 개념을 다시 확인하고 재도전해봐요. 🌱<br>처음보다 분명히 나아질 거예요.';
+  } else {
+    emoji = '💪'; stars = '⭐';
+    msg = '다시 도전해봐요! 개념 설명을 먼저 읽고 연습하면 분명 잘할 수 있어요. 🔥<br>포기하지 말고 계속 도전!';
+  }
+
+  document.getElementById('r-emoji').textContent  = emoji;
+  document.getElementById('r-stars').textContent  = stars;
+  document.getElementById('r-message').innerHTML  = msg;
+
+  // progress bar to 100%
+  document.getElementById('progress-bar').style.width = '100%';
+}
+</script>
+</body>
+</html>
