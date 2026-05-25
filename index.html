@@ -21,7 +21,7 @@
     background: #fff;
     border-radius: 24px;
     box-shadow: 0 24px 80px rgba(0,0,0,0.4);
-    max-width: 700px;
+    max-width: 680px;
     width: 100%;
     overflow: hidden;
   }
@@ -33,7 +33,7 @@
     text-align: center;
     color: #fff;
   }
-  .header h1 { font-size: 1.7rem; font-weight: 800; letter-spacing: -0.5px; }
+  .header h1 { font-size: 1.75rem; font-weight: 800; }
   .header p  { font-size: 0.9rem; opacity: 0.85; margin-top: 4px; }
   .level-badge {
     display: inline-block;
@@ -41,61 +41,54 @@
     color: #fff;
     font-size: 0.75rem;
     font-weight: 700;
-    padding: 3px 12px;
+    padding: 3px 14px;
     border-radius: 99px;
     margin-bottom: 8px;
     letter-spacing: 1px;
   }
 
   /* SCREENS */
-  .screen { display: none; padding: 28px 28px 32px; }
+  .screen { display: none; padding: 30px 28px 36px; }
   .screen.active { display: block; }
+
+  /* SECTION TITLE */
+  .section-title {
+    font-size: 1rem;
+    font-weight: 800;
+    color: #0f3460;
+    margin: 0 0 14px;
+  }
 
   /* WELCOME */
   .type-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin: 20px 0;
+    gap: 14px;
+    margin: 0 0 24px;
   }
   .type-card {
-    border-radius: 14px;
-    padding: 16px 14px;
+    border-radius: 16px;
+    padding: 20px 16px;
     border: 2px solid #e0e0e0;
     background: #fafafa;
+    text-align: center;
   }
-  .type-card .tag {
-    display: inline-block;
-    font-size: 0.72rem;
-    font-weight: 700;
-    padding: 2px 10px;
-    border-radius: 99px;
-    margin-bottom: 8px;
-  }
-  .tag-mul  { background: #e8eaff; color: #3949ab; }
-  .tag-div  { background: #e8f5e9; color: #2e7d32; }
-  .tag-pow  { background: #fff3e0; color: #e65100; }
-  .tag-x10  { background: #fce4ec; color: #ad1457; }
-  .tag-miss { background: #f3e5f5; color: #6a1b9a; }
-  .type-card h4 { font-size: 0.88rem; font-weight: 700; color: #222; margin-bottom: 4px; }
-  .type-card p  { font-size: 0.78rem; color: #666; line-height: 1.5; }
+  .type-card .icon { font-size: 2.2rem; margin-bottom: 10px; }
+  .type-card h4 { font-size: 0.95rem; font-weight: 800; color: #0f3460; margin-bottom: 6px; }
+  .type-card p  { font-size: 0.82rem; color: #666; line-height: 1.6; }
+  .type-card.mul { border-color: #7986cb; background: #f0f1ff; }
+  .type-card.div { border-color: #4db6ac; background: #f0fffe; }
+
   .example-box {
     background: #0f3460;
-    color: #e0e0ff;
+    color: #cce0ff;
     border-radius: 10px;
-    padding: 12px 16px;
+    padding: 12px 18px;
     margin: 8px 0;
     font-size: 1rem;
     font-weight: 700;
     font-family: monospace;
     letter-spacing: 1px;
-  }
-
-  .section-title {
-    font-size: 1rem;
-    font-weight: 800;
-    color: #0f3460;
-    margin: 20px 0 12px;
   }
 
   /* QUIZ */
@@ -111,8 +104,8 @@
   .progress-outer {
     background: #eee;
     border-radius: 99px;
-    height: 8px;
-    margin-bottom: 22px;
+    height: 9px;
+    margin-bottom: 26px;
     overflow: hidden;
   }
   .progress-inner {
@@ -124,34 +117,31 @@
 
   .question-type-badge {
     display: inline-block;
-    padding: 4px 14px;
+    padding: 4px 16px;
     border-radius: 99px;
-    font-size: 0.75rem;
+    font-size: 0.78rem;
     font-weight: 700;
     letter-spacing: 0.5px;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
   }
-  .badge-mul  { background: #e8eaff; color: #3949ab; }
-  .badge-div  { background: #e8f5e9; color: #2e7d32; }
-  .badge-pow  { background: #fff3e0; color: #e65100; }
-  .badge-x10  { background: #fce4ec; color: #ad1457; }
-  .badge-miss { background: #f3e5f5; color: #6a1b9a; }
+  .badge-mul { background: #e8eaff; color: #3949ab; }
+  .badge-div { background: #e0f7f5; color: #00695c; }
 
   .question-text {
-    font-size: 2.4rem;
+    font-size: 2.6rem;
     font-weight: 900;
     text-align: center;
     color: #0f3460;
-    margin: 16px 0 10px;
-    letter-spacing: 2px;
+    margin: 14px 0 8px;
     font-family: monospace;
+    letter-spacing: 2px;
     line-height: 1.3;
   }
   .question-hint {
     text-align: center;
-    font-size: 0.82rem;
-    color: #888;
-    margin-bottom: 20px;
+    font-size: 0.8rem;
+    color: #999;
+    margin-bottom: 24px;
   }
 
   .choices {
@@ -161,11 +151,11 @@
     margin-bottom: 20px;
   }
   .choice-btn {
-    padding: 16px 10px;
+    padding: 17px 10px;
     border-radius: 14px;
     border: 2.5px solid #ddd;
     background: #fafafa;
-    font-size: 1.35rem;
+    font-size: 1.45rem;
     font-weight: 700;
     color: #222;
     cursor: pointer;
@@ -175,13 +165,13 @@
   }
   .choice-btn:hover:not(:disabled) {
     border-color: #533483;
-    background: #f3eeff;
+    background: #f0eeff;
     transform: translateY(-2px);
     box-shadow: 0 6px 18px rgba(83,52,131,0.18);
   }
-  .choice-btn.correct { border-color: #28a745; background: #d4edda; color: #155724; }
-  .choice-btn.wrong   { border-color: #dc3545; background: #f8d7da; color: #721c24; }
-  .choice-btn.reveal  { border-color: #28a745; background: #d4edda; color: #155724; }
+  .choice-btn.correct { border-color: #2e7d32; background: #e8f5e9; color: #1b5e20; }
+  .choice-btn.wrong   { border-color: #c62828; background: #ffebee; color: #b71c1c; }
+  .choice-btn.reveal  { border-color: #2e7d32; background: #e8f5e9; color: #1b5e20; }
   .choice-btn:disabled { cursor: not-allowed; }
 
   .feedback-msg {
@@ -190,10 +180,9 @@
     font-weight: 700;
     min-height: 26px;
     margin-bottom: 14px;
-    line-height: 1.5;
   }
-  .feedback-msg.ok  { color: #28a745; }
-  .feedback-msg.err { color: #dc3545; }
+  .feedback-msg.ok  { color: #2e7d32; }
+  .feedback-msg.err { color: #c62828; }
 
   .next-btn {
     width: 100%;
@@ -212,58 +201,60 @@
   .next-btn.visible { display: block; }
 
   /* RESULT */
-  .result-hero { text-align: center; padding: 8px 0 20px; }
-  .result-emoji { font-size: 3.8rem; }
+  .result-hero { text-align: center; padding: 8px 0 22px; }
+  .result-emoji { font-size: 4rem; }
   .result-score {
-    font-size: 3rem;
+    font-size: 3.2rem;
     font-weight: 900;
     color: #0f3460;
-    margin: 6px 0 4px;
+    margin: 8px 0 4px;
     font-family: monospace;
   }
-  .result-label { font-size: 0.95rem; color: #666; }
+  .result-label { font-size: 0.95rem; color: #777; }
 
   .result-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+    gap: 12px;
     margin: 20px 0;
   }
   .result-stat {
-    background: #f4f0ff;
+    background: #f0f1ff;
     border-radius: 14px;
-    padding: 14px 8px;
+    padding: 16px 8px;
     text-align: center;
   }
-  .result-stat .num { font-size: 1.7rem; font-weight: 800; color: #533483; font-family: monospace; }
+  .result-stat .num { font-size: 1.8rem; font-weight: 800; color: #3949ab; font-family: monospace; }
   .result-stat .lbl { font-size: 0.75rem; color: #888; margin-top: 2px; }
 
   .breakdown {
     background: #f9f9f9;
     border-radius: 14px;
-    padding: 16px;
+    padding: 16px 18px;
     margin-bottom: 20px;
   }
-  .breakdown h4 { font-size: 0.85rem; font-weight: 800; color: #333; margin-bottom: 10px; }
+  .breakdown h4 { font-size: 0.85rem; font-weight: 800; color: #333; margin-bottom: 12px; }
   .breakdown-row {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 8px;
-    font-size: 0.82rem;
+    gap: 12px;
+    margin-bottom: 10px;
+    font-size: 0.83rem;
   }
-  .breakdown-label { width: 105px; font-weight: 600; color: #555; flex-shrink: 0; }
-  .breakdown-bar-outer { flex: 1; background: #e0e0e0; border-radius: 99px; height: 8px; }
-  .breakdown-bar-inner { height: 100%; border-radius: 99px; background: linear-gradient(90deg, #e94560, #533483); }
-  .breakdown-pct { width: 38px; text-align: right; font-weight: 700; color: #333; flex-shrink: 0; }
+  .breakdown-label { width: 72px; font-weight: 700; color: #444; flex-shrink: 0; }
+  .breakdown-bar-outer { flex: 1; background: #e0e0e0; border-radius: 99px; height: 10px; }
+  .breakdown-bar-inner { height: 100%; border-radius: 99px; transition: width 0.6s ease; }
+  .bar-mul { background: linear-gradient(90deg, #5c6bc0, #9575cd); }
+  .bar-div { background: linear-gradient(90deg, #26a69a, #42a5f5); }
+  .breakdown-detail { font-size: 0.8rem; color: #666; flex-shrink: 0; }
 
-  .stars { font-size: 1.8rem; text-align: center; margin: 4px 0 18px; letter-spacing: 4px; }
+  .stars { font-size: 2rem; text-align: center; margin: 4px 0 20px; letter-spacing: 6px; }
 
   /* BUTTONS */
   .btn {
     display: block;
     width: 100%;
-    padding: 15px;
+    padding: 16px;
     border-radius: 14px;
     border: none;
     font-size: 1rem;
@@ -282,26 +273,22 @@
   .concept-section {
     background: #f9f9f9;
     border-radius: 14px;
-    padding: 16px;
+    padding: 18px;
     margin-bottom: 14px;
     border-left: 4px solid #533483;
   }
-  .concept-section h4 { font-size: 0.92rem; font-weight: 800; color: #0f3460; margin-bottom: 8px; }
-  .concept-section p  { font-size: 0.85rem; color: #444; line-height: 1.7; }
+  .concept-section h4 { font-size: 0.95rem; font-weight: 800; color: #0f3460; margin-bottom: 10px; }
+  .concept-section p  { font-size: 0.85rem; color: #444; line-height: 1.8; }
   .concept-section code {
-    background: #0f3460;
-    color: #e0e0ff;
-    padding: 2px 8px;
-    border-radius: 6px;
-    font-family: monospace;
-    font-size: 0.95rem;
+    background: #0f3460; color: #cce0ff;
+    padding: 2px 8px; border-radius: 6px;
+    font-family: monospace; font-size: 0.95rem;
   }
 
   @media (max-width: 420px) {
     .type-grid { grid-template-columns: 1fr; }
-    .question-text { font-size: 1.8rem; }
-    .choices { gap: 8px; }
-    .choice-btn { font-size: 1.1rem; padding: 12px 6px; }
+    .question-text { font-size: 2rem; }
+    .choice-btn { font-size: 1.15rem; padding: 13px 6px; }
   }
 </style>
 </head>
@@ -310,46 +297,30 @@
   <div class="header">
     <div class="level-badge">YEAR 5</div>
     <h1>✖️ 곱셈 &amp; 나눗셈 ➗</h1>
-    <p>심화 반복학습 · 100문항 · 5가지 유형</p>
+    <p>곱셈 50문항 + 나눗셈 50문항 · 총 100문항</p>
   </div>
 
   <!-- WELCOME -->
   <div id="screen-welcome" class="screen active">
-    <p class="section-title">📋 Year 5 문제 유형 (5종)</p>
+    <p class="section-title">📋 문제 유형</p>
     <div class="type-grid">
-      <div class="type-card">
-        <span class="tag tag-mul">곱셈</span>
-        <h4>두 자리 × 두 자리</h4>
-        <p>예: 47 × 38 = ?<br>최대 4자리 결과값</p>
+      <div class="type-card mul">
+        <div class="icon">✖️</div>
+        <h4>곱셈 (50문항)</h4>
+        <p>두 자리 × 두 자리<br>세 자리 × 한 자리<br>세 자리 × 두 자리</p>
       </div>
-      <div class="type-card">
-        <span class="tag tag-div">나눗셈</span>
-        <h4>세·네 자리 ÷ 한·두 자리</h4>
-        <p>예: 2,736 ÷ 8 = ?<br>나머지 없는 나눗셈</p>
-      </div>
-      <div class="type-card">
-        <span class="tag tag-pow">제곱수</span>
-        <h4>제곱수 &amp; 세제곱수</h4>
-        <p>예: 13² = ? / 4³ = ?<br>1~15 제곱, 1~6 세제곱</p>
-      </div>
-      <div class="type-card">
-        <span class="tag tag-x10">배수 연산</span>
-        <h4>× / ÷ 10, 100, 1000</h4>
-        <p>예: 347 × 100 = ?<br>자릿값 이동 원리</p>
-      </div>
-      <div class="type-card" style="grid-column: span 2;">
-        <span class="tag tag-miss">빈칸 채우기</span>
-        <h4>숨겨진 수 찾기 (Missing Factor)</h4>
-        <p>예: 24 × □ = 576 &nbsp;/&nbsp; □ ÷ 12 = 34</p>
+      <div class="type-card div">
+        <div class="icon">➗</div>
+        <h4>나눗셈 (50문항)</h4>
+        <p>세 자리 ÷ 한 자리<br>네 자리 ÷ 한 자리<br>세 자리 ÷ 두 자리</p>
       </div>
     </div>
 
     <p class="section-title">💡 예시 문제</p>
     <div class="example-box">47 × 38 = 1,786</div>
+    <div class="example-box">246 × 7 = 1,722</div>
     <div class="example-box">2,736 ÷ 8 = 342</div>
-    <div class="example-box">13² = 169 &nbsp;&nbsp; 4³ = 64</div>
-    <div class="example-box">4,500 ÷ 100 = 45</div>
-    <div class="example-box">36 × □ = 1,188 &rarr; □ = 33</div>
+    <div class="example-box">756 ÷ 14 = 54</div>
 
     <button class="btn btn-primary" style="margin-top:24px" onclick="startQuiz()">🚀 100문항 도전!</button>
     <button class="btn btn-outline" onclick="showScreen('screen-concept')">📖 개념 정리 보기</button>
@@ -365,7 +336,16 @@
         <code>47 × 38</code><br>
         = 47 × 30 + 47 × 8<br>
         = 1,410 + 376 = <strong>1,786</strong><br><br>
-        팁: 자릿값을 분리해서 계산해요!
+        💡 자릿값을 분리해서 계산해요!
+      </p>
+    </div>
+
+    <div class="concept-section">
+      <h4>✖️ 세 자리 × 두 자리</h4>
+      <p>
+        <code>246 × 32</code><br>
+        = 246 × 30 + 246 × 2<br>
+        = 7,380 + 492 = <strong>7,872</strong>
       </p>
     </div>
 
@@ -373,38 +353,19 @@
       <h4>➗ 세·네 자리 나눗셈 (Long Division)</h4>
       <p>
         <code>2,736 ÷ 8</code><br>
-        27 ÷ 8 = 3 나머지 3 → 33 ÷ 8 = 4 나머지 1 → 16 ÷ 8 = 2<br>
+        27 ÷ 8 = 3 ··· 3 → 33 ÷ 8 = 4 ··· 1 → 16 ÷ 8 = 2<br>
         = <strong>342</strong><br><br>
-        확인법: 342 × 8 = 2,736 ✓
+        ✅ 확인법: 342 × 8 = 2,736
       </p>
     </div>
 
     <div class="concept-section">
-      <h4>📐 제곱수 &amp; 세제곱수</h4>
+      <h4>➗ 세 자리 ÷ 두 자리</h4>
       <p>
-        <code>n²</code> = n × n &nbsp;&nbsp; <code>n³</code> = n × n × n<br><br>
-        제곱수: 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225<br>
-        세제곱수: 1, 8, 27, 64, 125, 216
-      </p>
-    </div>
-
-    <div class="concept-section">
-      <h4>🔟 × / ÷ 10, 100, 1000</h4>
-      <p>
-        × 10 → 자릿수 1칸 왼쪽 이동<br>
-        ÷ 10 → 자릿수 1칸 오른쪽 이동<br><br>
-        <code>347 × 100 = 34,700</code><br>
-        <code>4,500 ÷ 1,000 = 4.5</code>
-      </p>
-    </div>
-
-    <div class="concept-section">
-      <h4>❓ Missing Factor (빈칸 채우기)</h4>
-      <p>
-        <code>36 × □ = 1,188</code><br>
-        → □ = 1,188 ÷ 36 = <strong>33</strong><br><br>
-        <code>□ ÷ 12 = 34</code><br>
-        → □ = 34 × 12 = <strong>408</strong>
+        <code>756 ÷ 14</code><br>
+        75 ÷ 14 = 5 ··· 5 → 56 ÷ 14 = 4<br>
+        = <strong>54</strong><br><br>
+        ✅ 확인법: 54 × 14 = 756
       </p>
     </div>
 
@@ -433,7 +394,7 @@
   <div id="screen-result" class="screen">
     <div class="result-hero">
       <div class="result-emoji" id="r-emoji">🎉</div>
-      <div class="result-score" id="r-score">85 / 100</div>
+      <div class="result-score" id="r-score">0 / 100</div>
       <div class="result-label">최종 점수</div>
     </div>
     <div class="stars" id="r-stars">⭐⭐⭐⭐⭐</div>
@@ -455,7 +416,7 @@
       <h4>📊 유형별 정답률</h4>
       <div id="breakdown-rows"></div>
     </div>
-    <div id="r-message" style="text-align:center;font-size:0.9rem;color:#555;margin-bottom:20px;line-height:1.7;"></div>
+    <div id="r-message" style="text-align:center;font-size:0.9rem;color:#555;margin-bottom:22px;line-height:1.7;"></div>
     <button class="btn btn-primary" onclick="retryQuiz()">🔄 다시 도전!</button>
     <button class="btn btn-secondary" onclick="showScreen('screen-welcome')">🏠 처음으로</button>
   </div>
@@ -472,139 +433,117 @@ function shuffle(arr) {
 function rnd(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
 function fmt(n) { return Number(n).toLocaleString('ko-KR'); }
 
+// Generate 4 distinct wrong-ish choices
 function makeChoices(answer, spread, min) {
   const set = new Set([answer]);
-  const candidates = [];
-  for (let d = 1; d <= 30; d++) {
+  const cands = [];
+  for (let d = 1; d <= 40; d++) {
     for (const s of [1, -1]) {
       const v = answer + s * d * spread;
-      if (v !== answer && v >= min) candidates.push(v);
+      if (v >= min) cands.push(v);
     }
   }
-  shuffle(candidates);
-  for (const v of candidates) {
+  shuffle(cands);
+  for (const v of cands) {
     if (set.size >= 4) break;
     set.add(v);
   }
-  while (set.size < 4) set.add(answer + rnd(1, 15) * spread);
-  return shuffle([...set].slice(0, 4));
+  return shuffle([...set].slice(0, 4)).map(v => ({ val: v, disp: fmt(v) }));
 }
 
-// Type 1: 2-digit x 2-digit (25 qs)
+// ── Multiplication generators ─────────────────────────────────────
+
+// 2-digit × 2-digit
 function makeMul2x2() {
-  const a = rnd(12, 99), b = rnd(12, 99), answer = a * b;
+  const a = rnd(12, 99), b = rnd(12, 99), ans = a * b;
   return {
-    type: 'mul', label: '✖️ 두 자리 곱셈', badgeClass: 'badge-mul',
+    type: 'mul', subtype: '두 자리 × 두 자리',
+    label: '✖️ 두 자리 곱셈', badgeClass: 'badge-mul',
     text: `${a} × ${b} = ?`, hint: '(두 자리 × 두 자리)',
-    answer, displayAnswer: fmt(answer),
-    choices: makeChoices(answer, rnd(10, 50), 100).map(v => ({ val: v, disp: fmt(v) }))
+    answer: ans, displayAnswer: fmt(ans),
+    choices: makeChoices(ans, rnd(10, 60), 100)
   };
 }
 
-// Type 2: 3-digit x 1-digit (10 qs)
+// 3-digit × 1-digit
 function makeMul3x1() {
-  const a = rnd(101, 999), b = rnd(3, 9), answer = a * b;
+  const a = rnd(101, 999), b = rnd(3, 9), ans = a * b;
   return {
-    type: 'mul', label: '✖️ 세 자리 곱셈', badgeClass: 'badge-mul',
+    type: 'mul', subtype: '세 자리 × 한 자리',
+    label: '✖️ 세 자리 곱셈', badgeClass: 'badge-mul',
     text: `${fmt(a)} × ${b} = ?`, hint: '(세 자리 × 한 자리)',
-    answer, displayAnswer: fmt(answer),
-    choices: makeChoices(answer, rnd(10, 80), 300).map(v => ({ val: v, disp: fmt(v) }))
+    answer: ans, displayAnswer: fmt(ans),
+    choices: makeChoices(ans, rnd(20, 100), 300)
   };
 }
 
-// Type 3: division (25 qs)
-function makeDiv() {
-  const divisor = rnd(3, 12), quotient = rnd(20, 999), dividend = divisor * quotient;
+// 3-digit × 2-digit
+function makeMul3x2() {
+  const a = rnd(101, 499), b = rnd(12, 49), ans = a * b;
   return {
-    type: 'div', label: '➗ 나눗셈', badgeClass: 'badge-div',
-    text: `${fmt(dividend)} ÷ ${divisor} = ?`,
-    hint: dividend > 999 ? '(네 자리 ÷ 한/두 자리)' : '(세 자리 ÷ 한 자리)',
-    answer: quotient, displayAnswer: fmt(quotient),
-    choices: makeChoices(quotient, rnd(3, 15), 1).map(v => ({ val: v, disp: fmt(v) }))
+    type: 'mul', subtype: '세 자리 × 두 자리',
+    label: '✖️ 세 자리 곱셈', badgeClass: 'badge-mul',
+    text: `${fmt(a)} × ${b} = ?`, hint: '(세 자리 × 두 자리)',
+    answer: ans, displayAnswer: fmt(ans),
+    choices: makeChoices(ans, rnd(50, 200), 1000)
   };
 }
 
-// Type 4: powers (15 qs)
-function makePower() {
-  if (Math.random() < 0.3) {
-    const base = rnd(2, 6), answer = base ** 3;
-    return {
-      type: 'pow', label: '🔢 세제곱수', badgeClass: 'badge-pow',
-      text: `${base}³ = ?`, hint: `(${base} × ${base} × ${base})`,
-      answer, displayAnswer: fmt(answer),
-      choices: makeChoices(answer, rnd(5, 20), 1).map(v => ({ val: v, disp: fmt(v) }))
-    };
-  } else {
-    const base = rnd(6, 15), answer = base ** 2;
-    return {
-      type: 'pow', label: '🔢 제곱수', badgeClass: 'badge-pow',
-      text: `${base}² = ?`, hint: `(${base} × ${base})`,
-      answer, displayAnswer: fmt(answer),
-      choices: makeChoices(answer, rnd(4, 18), 1).map(v => ({ val: v, disp: fmt(v) }))
-    };
-  }
-}
+// ── Division generators ───────────────────────────────────────────
 
-// Type 5: scale ×÷ 10/100/1000 (15 qs)
-function makeScaleOp() {
-  const mult = [10, 100, 1000][rnd(0, 2)];
-  if (Math.random() < 0.5) {
-    const base = rnd(12, 999), answer = base * mult;
-    return {
-      type: 'x10', label: `✖️ × ${fmt(mult)}`, badgeClass: 'badge-x10',
-      text: `${fmt(base)} × ${fmt(mult)} = ?`, hint: `(자릿수 ${Math.log10(mult)}칸 이동)`,
-      answer, displayAnswer: fmt(answer),
-      choices: makeChoices(answer, mult, 100).map(v => ({ val: v, disp: fmt(v) }))
-    };
-  } else {
-    const answer = rnd(12, 999), dividend = answer * mult;
-    return {
-      type: 'x10', label: `➗ ÷ ${fmt(mult)}`, badgeClass: 'badge-x10',
-      text: `${fmt(dividend)} ÷ ${fmt(mult)} = ?`, hint: `(자릿수 ${Math.log10(mult)}칸 이동)`,
-      answer, displayAnswer: fmt(answer),
-      choices: makeChoices(answer, rnd(3, 12), 1).map(v => ({ val: v, disp: fmt(v) }))
-    };
-  }
-}
-
-// Type 6: missing factor (10 qs)
-function makeMissing() {
-  const pick = rnd(0, 3);
-  let text, answer, spread;
-  if (pick === 0) {
-    const a = rnd(12, 40), b = rnd(12, 40);
-    text = `${a} × □ = ${fmt(a * b)}`; answer = b; spread = rnd(2, 8);
-  } else if (pick === 1) {
-    const a = rnd(12, 40), b = rnd(12, 40);
-    text = `□ × ${a} = ${fmt(a * b)}`; answer = b; spread = rnd(2, 8);
-  } else if (pick === 2) {
-    const a = rnd(3, 15), b = rnd(20, 80);
-    text = `□ ÷ ${a} = ${fmt(b)}`; answer = a * b; spread = rnd(10, 50);
-  } else {
-    const b = rnd(3, 15), q = rnd(20, 80);
-    text = `${fmt(b * q)} ÷ □ = ${fmt(q)}`; answer = b; spread = rnd(1, 5);
-  }
+// 3-digit ÷ 1-digit (exact)
+function makeDiv3x1() {
+  const d = rnd(3, 9), q = rnd(20, 99), dvd = d * q;
   return {
-    type: 'miss', label: '❓ 빈칸 채우기', badgeClass: 'badge-miss',
-    text, hint: '□ 에 들어갈 수를 구하세요',
-    answer, displayAnswer: fmt(answer),
-    choices: makeChoices(answer, spread, 1).map(v => ({ val: v, disp: fmt(v) }))
+    type: 'div', subtype: '세 자리 ÷ 한 자리',
+    label: '➗ 나눗셈', badgeClass: 'badge-div',
+    text: `${fmt(dvd)} ÷ ${d} = ?`, hint: '(세 자리 ÷ 한 자리)',
+    answer: q, displayAnswer: fmt(q),
+    choices: makeChoices(q, rnd(3, 10), 1)
   };
 }
 
+// 4-digit ÷ 1-digit (exact)
+function makeDiv4x1() {
+  const d = rnd(3, 9), q = rnd(100, 999), dvd = d * q;
+  return {
+    type: 'div', subtype: '네 자리 ÷ 한 자리',
+    label: '➗ 나눗셈', badgeClass: 'badge-div',
+    text: `${fmt(dvd)} ÷ ${d} = ?`, hint: '(네 자리 ÷ 한 자리)',
+    answer: q, displayAnswer: fmt(q),
+    choices: makeChoices(q, rnd(5, 20), 1)
+  };
+}
+
+// 3-digit ÷ 2-digit (exact)
+function makeDiv3x2() {
+  const d = rnd(11, 25), q = rnd(12, 49), dvd = d * q;
+  return {
+    type: 'div', subtype: '세 자리 ÷ 두 자리',
+    label: '➗ 나눗셈', badgeClass: 'badge-div',
+    text: `${fmt(dvd)} ÷ ${d} = ?`, hint: '(세 자리 ÷ 두 자리)',
+    answer: q, displayAnswer: fmt(q),
+    choices: makeChoices(q, rnd(3, 8), 1)
+  };
+}
+
+// ── Build 100 questions ───────────────────────────────────────────
+// Mul 50: 20 × (2×2) + 15 × (3×1) + 15 × (3×2)
+// Div 50: 20 × (3÷1) + 15 × (4÷1) + 15 × (3÷2)
 function buildQuestions() {
   const qs = [];
-  for (let i = 0; i < 25; i++) qs.push(makeMul2x2());
-  for (let i = 0; i < 10; i++) qs.push(makeMul3x1());
-  for (let i = 0; i < 25; i++) qs.push(makeDiv());
-  for (let i = 0; i < 15; i++) qs.push(makePower());
-  for (let i = 0; i < 15; i++) qs.push(makeScaleOp());
-  for (let i = 0; i < 10; i++) qs.push(makeMissing());
+  for (let i = 0; i < 20; i++) qs.push(makeMul2x2());
+  for (let i = 0; i < 15; i++) qs.push(makeMul3x1());
+  for (let i = 0; i < 15; i++) qs.push(makeMul3x2());
+  for (let i = 0; i < 20; i++) qs.push(makeDiv3x1());
+  for (let i = 0; i < 15; i++) qs.push(makeDiv4x1());
+  for (let i = 0; i < 15; i++) qs.push(makeDiv3x2());
   return shuffle(qs);
 }
 
+// ── State ─────────────────────────────────────────────────────────
 let questions = [], current = 0, correct = 0, wrong = 0, answered = false;
-const typeStats = {};
+let stats = { mul: [0, 0], div: [0, 0] };
 
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
@@ -614,7 +553,7 @@ function showScreen(id) {
 function startQuiz() {
   questions = buildQuestions();
   current = 0; correct = 0; wrong = 0; answered = false;
-  for (const k of ['mul','div','pow','x10','miss']) typeStats[k] = [0, 0];
+  stats = { mul: [0, 0], div: [0, 0] };
   showScreen('screen-quiz');
   renderQuestion();
 }
@@ -623,48 +562,59 @@ function retryQuiz() { startQuiz(); }
 function renderQuestion() {
   const q = questions[current];
   answered = false;
+
   document.getElementById('q-count').textContent = `문제 ${current + 1} / 100`;
   document.getElementById('q-score').textContent  = `✅ ${correct}  ❌ ${wrong}`;
   document.getElementById('progress-bar').style.width = `${(current / 100) * 100}%`;
+
   const badge = document.getElementById('q-badge');
-  badge.textContent = q.label; badge.className = `question-type-badge ${q.badgeClass}`;
+  badge.textContent = q.label;
+  badge.className   = `question-type-badge ${q.badgeClass}`;
+
   document.getElementById('q-text').textContent = q.text;
-  document.getElementById('q-hint').textContent = q.hint || '';
+  document.getElementById('q-hint').textContent = q.hint;
 
   const choicesEl = document.getElementById('q-choices');
   choicesEl.innerHTML = '';
   q.choices.forEach(c => {
     const btn = document.createElement('button');
-    btn.className = 'choice-btn';
+    btn.className   = 'choice-btn';
     btn.textContent = c.disp;
     btn.dataset.val = c.val;
-    btn.onclick = () => selectAnswer(btn, c.val, q.answer, q.type, q.displayAnswer);
+    btn.onclick     = () => selectAnswer(btn, c.val, q);
     choicesEl.appendChild(btn);
   });
+
   document.getElementById('q-feedback').textContent = '';
   document.getElementById('q-feedback').className   = 'feedback-msg';
   document.getElementById('next-btn').classList.remove('visible');
 }
 
-function selectAnswer(btn, chosen, answer, type, displayAnswer) {
+function selectAnswer(btn, chosen, q) {
   if (answered) return;
   answered = true;
   document.querySelectorAll('.choice-btn').forEach(b => b.disabled = true);
+
   const fb = document.getElementById('q-feedback');
-  typeStats[type][1]++;
-  if (Number(chosen) === Number(answer)) {
-    btn.classList.add('correct'); correct++; typeStats[type][0]++;
-    const msgs = ['정답! 🎉', '완벽해요! ⭐', '훌륭합니다! 🌟', '맞았어요! 👏', '정확해요! 🔥'];
-    fb.textContent = msgs[Math.floor(Math.random() * msgs.length)];
+  stats[q.type][1]++;
+
+  if (Number(chosen) === Number(q.answer)) {
+    btn.classList.add('correct');
+    correct++;
+    stats[q.type][0]++;
+    const ok = ['정답! 🎉', '완벽해요! ⭐', '훌륭합니다! 🌟', '맞았어요! 👏', '정확해요! 🔥'];
+    fb.textContent = ok[Math.floor(Math.random() * ok.length)];
     fb.className   = 'feedback-msg ok';
   } else {
-    btn.classList.add('wrong'); wrong++;
+    btn.classList.add('wrong');
+    wrong++;
     document.querySelectorAll('.choice-btn').forEach(b => {
-      if (Number(b.dataset.val) === Number(answer)) b.classList.add('reveal');
+      if (Number(b.dataset.val) === Number(q.answer)) b.classList.add('reveal');
     });
-    fb.textContent = `아쉬워요 😢  정답: ${displayAnswer}`;
+    fb.textContent = `아쉬워요 😢   정답: ${q.displayAnswer}`;
     fb.className   = 'feedback-msg err';
   }
+
   document.getElementById('q-score').textContent = `✅ ${correct}  ❌ ${wrong}`;
   document.getElementById('next-btn').classList.add('visible');
 }
@@ -678,35 +628,44 @@ function nextQuestion() {
 function showResult() {
   showScreen('screen-result');
   const pct = Math.round((correct / 100) * 100);
+
   document.getElementById('r-score').textContent   = `${correct} / 100`;
   document.getElementById('r-correct').textContent = correct;
   document.getElementById('r-wrong').textContent   = wrong;
   document.getElementById('r-pct').textContent     = `${pct}%`;
 
   let emoji, stars, msg;
-  if      (pct >= 95) { emoji='🏆'; stars='⭐⭐⭐⭐⭐'; msg='Year 5 수학 마스터! 🎓<br>5가지 유형 모두 완벽하게 소화했어요.'; }
-  else if (pct >= 80) { emoji='🎉'; stars='⭐⭐⭐⭐';   msg='훌륭한 실력이에요! 💪<br>틀린 유형을 집중 복습하면 100점도 가능해요.'; }
-  else if (pct >= 60) { emoji='😊'; stars='⭐⭐⭐';     msg='잘 하고 있어요! 📚<br>아래 유형별 분석을 보고 약점을 보완해봐요.'; }
-  else if (pct >= 40) { emoji='🙂'; stars='⭐⭐';       msg='도전 정신이 훌륭해요! 🌱<br>개념 정리를 먼저 읽고 다시 도전해봐요.'; }
-  else                { emoji='💪'; stars='⭐';         msg='포기하지 마세요! 🔥<br>개념 설명부터 차근차근 다시 시작해봐요.'; }
+  if      (pct >= 95) { emoji = '🏆'; stars = '⭐⭐⭐⭐⭐'; msg = 'Year 5 곱셈·나눗셈 완전 마스터! 🎓<br>정말 대단해요. 계속 이 실력을 유지해요!'; }
+  else if (pct >= 80) { emoji = '🎉'; stars = '⭐⭐⭐⭐';   msg = '훌륭한 실력이에요! 💪<br>틀린 유형을 집중 복습하면 만점도 가능해요.'; }
+  else if (pct >= 60) { emoji = '😊'; stars = '⭐⭐⭐';     msg = '잘 하고 있어요! 📚<br>아래 유형별 분석으로 약점을 찾아봐요.'; }
+  else if (pct >= 40) { emoji = '🙂'; stars = '⭐⭐';       msg = '도전 정신이 훌륭해요! 🌱<br>개념 정리를 읽고 다시 도전해봐요.'; }
+  else                { emoji = '💪'; stars = '⭐';         msg = '포기하지 마세요! 🔥<br>차근차근 개념부터 다시 시작해봐요.'; }
 
   document.getElementById('r-emoji').textContent = emoji;
   document.getElementById('r-stars').textContent = stars;
   document.getElementById('r-message').innerHTML = msg;
 
-  const labels = { mul:'곱셈', div:'나눗셈', pow:'제곱/세제곱', x10:'×÷10/100', miss:'빈칸채우기' };
+  // Breakdown bars
   const rowsEl = document.getElementById('breakdown-rows');
   rowsEl.innerHTML = '';
-  for (const [key, [ok, total]] of Object.entries(typeStats)) {
-    if (!total) continue;
+  const items = [
+    { key: 'mul', label: '✖️ 곱셈', barClass: 'bar-mul' },
+    { key: 'div', label: '➗ 나눗셈', barClass: 'bar-div' }
+  ];
+  items.forEach(({ key, label, barClass }) => {
+    const [ok, total] = stats[key];
+    if (!total) return;
     const p = Math.round((ok / total) * 100);
     rowsEl.innerHTML += `
       <div class="breakdown-row">
-        <span class="breakdown-label">${labels[key]}</span>
-        <div class="breakdown-bar-outer"><div class="breakdown-bar-inner" style="width:${p}%"></div></div>
-        <span class="breakdown-pct">${p}%</span>
+        <span class="breakdown-label">${label}</span>
+        <div class="breakdown-bar-outer">
+          <div class="breakdown-bar-inner ${barClass}" style="width:${p}%"></div>
+        </div>
+        <span class="breakdown-detail">${ok}/${total} (${p}%)</span>
       </div>`;
-  }
+  });
+
   document.getElementById('progress-bar').style.width = '100%';
 }
 </script>
